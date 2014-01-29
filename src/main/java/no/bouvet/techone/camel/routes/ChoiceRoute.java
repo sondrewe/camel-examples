@@ -6,7 +6,7 @@ import org.apache.camel.builder.RouteBuilder;
 /**
  * Created by swe on 28.01.14.
  */
-public class SplitterRoute extends RouteBuilder {
+public class ChoiceRoute extends RouteBuilder {
     @Override
     public void configure() throws Exception {
         from("file:/home/swe/camel/input/?delete=true")
@@ -22,9 +22,5 @@ public class SplitterRoute extends RouteBuilder {
                 .log(LoggingLevel.ERROR, "received file with illegal extension: ${file:ext}")
             .endChoice()
         ;
-
-        from("direct:xmlFileProcessor")
-                .split(xpath("//ansatt"))
-                .log(LoggingLevel.INFO, "${body}");
     }
 }
