@@ -10,7 +10,7 @@ public class FileRoute extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        from("file:/home/swe/camel/input")
-        .log(LoggingLevel.INFO, "Mottok fil med navn ${file:name}");
+        from("file:testFiles/input?move=../processedFiles")
+            .log(LoggingLevel.INFO, "Mottok fil med navn ${file:name}");
     }
 }

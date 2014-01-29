@@ -1,6 +1,7 @@
 package no.bouvet.techone.camel.routes;
 
-import org.apache.camel.LoggingLevel;
+import static org.apache.camel.LoggingLevel.INFO;
+import static org.apache.camel.LoggingLevel.ERROR;
 import org.apache.camel.builder.RouteBuilder;
 
 /**
@@ -9,17 +10,17 @@ import org.apache.camel.builder.RouteBuilder;
 public class ChoiceRoute extends RouteBuilder {
     @Override
     public void configure() throws Exception {
-        from("file:/home/swe/camel/input/?delete=true")
-            .log(LoggingLevel.INFO, "File ${file:name} received")
+        from("ftp://user@myFtpServer/input/?password=secret&move=processedFiles")
+            .log(INFO, "File ${file:name} received")
             .choice()
                 .when(simple("${file:ext} == 'xml'"))
-                    .to("direct:xmlFileProcessor")
+                    .to("file:testFiles/xmlOut")
                 .when(simple("${file:ext} == 'txt'"))
-                    .to("direct:textFileProcessor")
+                    .to("file:testFiles/txtOut")
                 .when(simple("${file:ext} == 'csv'"))
-                    .to("direct:csvFileProcessor")
+                    .to("file:testFiles/csvOut")
                 .otherwise()
-                .log(LoggingLevel.ERROR, "received file with illegal extension: ${file:ext}")
+                    .log(ERROR, "received file with illegal extension: ${file:ext}")
             .endChoice()
         ;
     }
