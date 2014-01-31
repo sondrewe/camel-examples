@@ -13,7 +13,7 @@ public class Http4Route extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        from("quatz://weatherTrigger?cron=0+0+0/1+*+*+?").routeId(ROUTE_NAME)
+        from("quartz://weatherTrigger?cron=0+0+0/1+*+*+?").routeId(ROUTE_NAME)
                 .log(LoggingLevel.INFO, "Started!")
                 .setHeader(Exchange.HTTP_QUERY, constant("lat=59.57;lon=10.45"))
                 .to("http4://api.met.no/weatherapi/locationforecast/1.8/")
