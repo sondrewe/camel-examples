@@ -4,7 +4,9 @@ import org.apache.camel.LoggingLevel;
 import org.apache.camel.builder.RouteBuilder;
 
 /**
- * Created by swe on 28.01.14.
+ * Created by Sondre Wabakken Engell on 28.01.14.
+ *
+ * Simple route to demonstrate the file component.
  */
 public class FileRoute extends RouteBuilder {
 

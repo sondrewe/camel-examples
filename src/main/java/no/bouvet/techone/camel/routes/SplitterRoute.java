@@ -4,7 +4,10 @@ import org.apache.camel.LoggingLevel;
 import org.apache.camel.builder.RouteBuilder;
 
 /**
- * Created by felles on 29.01.14.
+ * Created by Sondre Wabakken Engell on 29.01.14.
+ *
+ * Route to demonstrate the use of the splitter processor.
+ * Also uses the file and direct components as well as the splitter processor.
  */
 public class SplitterRoute extends RouteBuilder {
     @Override

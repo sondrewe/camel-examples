@@ -5,7 +5,10 @@ import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mongodb.MongoDbConstants;
 
 /**
- * Created by felles on 30.01.14.
+ * Created by Sondre Wabakken Engell on 30.01.14.
+ *
+ * Route to demonstrate the use of the restlet component.
+ * In addition it uses the mongodb component to create a response.
  */
 public class RestletRoute extends RouteBuilder {
 

@@ -5,7 +5,10 @@ import static org.apache.camel.LoggingLevel.ERROR;
 import org.apache.camel.builder.RouteBuilder;
 
 /**
- * Created by swe on 28.01.14.
+ * Created by Sondre Wabakken Engell on 28.01.14.
+ *
+ * Simple route to demonstrate the choice processor (Content Based Router).
+ * Also shows the use of ftp and file components.
  */
 public class ChoiceRoute extends RouteBuilder {
     @Override

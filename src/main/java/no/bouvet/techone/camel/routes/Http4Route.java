@@ -6,6 +6,9 @@ import org.apache.camel.builder.RouteBuilder;
 
 /**
  * Created by Sondre Wabakken Engell on 30.01.14.
+ *
+ * Route to demonstrate the use of a http4 component.
+ * Also uses a quartz component to trigger the route i addition to both split, filter and marshall processors.
  */
 public class Http4Route extends RouteBuilder {
 
