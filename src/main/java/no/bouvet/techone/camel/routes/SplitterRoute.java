@@ -1,6 +1,8 @@
 package no.bouvet.techone.camel.routes;
 
+import org.apache.camel.Exchange;
 import org.apache.camel.LoggingLevel;
+import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 
 /**
@@ -21,8 +23,14 @@ public class SplitterRoute extends RouteBuilder {
             .log(LoggingLevel.INFO, this.getClass().getName(), "Ferdig behandlet\n ${body}");
 
         from("direct:processEmployee")
-            .marshal().xmljson()
-            .log(LoggingLevel.INFO, "Konvertert XML til json:\n ${body}")
+            .process(new Processor() {
+                @Override
+                public void process(Exchange exchange) throws Exception {
+                    String s = exchange.getIn().getBody(String.class);
+                }
+            })
+                .marshal().xmljson()
+                .log(LoggingLevel.INFO, "Konvertert XML til json:\n ${body}")
         ;
     }
 }
