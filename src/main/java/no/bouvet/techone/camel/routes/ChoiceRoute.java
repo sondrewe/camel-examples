@@ -9,6 +9,10 @@ import org.apache.camel.builder.RouteBuilder;
  *
  * Simple route to demonstrate the choice processor (Content Based Router).
  * Also shows the use of ftp and file components.
+ *
+ * To be able to mock the individual nodes inside the when clauses we need to
+ * give them an id. The weaveByString does not work for choice since the entire choice
+ * statement is considered as one node. See test class for more info.
  */
 public class ChoiceRoute extends RouteBuilder {
     @Override
@@ -17,14 +21,14 @@ public class ChoiceRoute extends RouteBuilder {
             .log(INFO, "File ${file:name} received")
             .choice()
                 .when(simple("${file:ext} == 'xml'"))
-                    .to("file:testFiles/xmlOut")
+                    .to("file:testFiles/xmlOut").id("xmlNode")
                 .when(simple("${file:ext} == 'txt'"))
-                    .to("file:testFiles/txtOut")
+                    .to("file:testFiles/txtOut").id("txtNode")
                 .when(simple("${file:ext} == 'csv'"))
-                    .to("file:testFiles/csvOut")
+                    .to("file:testFiles/csvOut").id("csvNode")
                 .otherwise()
-                    .log(ERROR, "received file with illegal extension: ${file:ext}")
-            .endChoice()
+                    .log(ERROR, "received file with illegal extension: ${file:ext}").id("otherwiseNode")
+            .end()
         ;
     }
 }
